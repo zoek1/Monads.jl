@@ -55,7 +55,7 @@ end
 mdo_desugar(exprIn) = reduce(mdo_desugar_helper, :(), reverse(exprIn.args))
 mdo_desugar_helper(rest, expr) = rest
 function mdo_desugar_helper(rest, expr::Expr)
-    if expr.head == :call && expr.args[1] == :(<-)
+    if expr.head == :call && expr.args[1] == :(<|)
         # replace "<-" with monadic binding
         quote
             bind($(expr.args[3])) do $(expr.args[2])
